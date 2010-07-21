@@ -1,18 +1,4 @@
-// Position.C
-// Copyright (c) 2009 The Foundry Visionmongers Ltd.	All Rights Reserved.
-
-// Moves the input by an integer number of pixels.
-
-// Notice that the controls are an X/Y position controlled by the user
-// and a 0,0 position that the user cannot move. This is so the plugin
-// can figure out the translation between 0,0 and the output
-// position. Without this proxy scaling produces X,Y positions that are
-// not useful for moving the corner of the image to, because they
-// produce positions that point at a certain pixel. Moving the
-// lower-left corner here is not always correct as the lower-left
-// corner is not always the same point relative to the image when
-// you compare the proxy and full-size images. This can be seen if
-// you imagine them having different aspect ratios.
+// Rolls the input by an integer number of pixels.
 
 #include "DDImage/Iop.h"
 #include "DDImage/Row.h"
