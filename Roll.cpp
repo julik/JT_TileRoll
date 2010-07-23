@@ -10,12 +10,14 @@
 #include "DDImage/DDMath.h"
 #include "DDImage/Hash.h"
 
+#include <vector>
+#include <algorithm>
+
 using namespace DD::Image;
 
 static const char* const CLASS = "Roll";
-static const char* const HELP = "Rolls the input by an integer number of pixels and loops it on the other side.";
-
-
+static const char* const HELP = "Rolls the input by an integer number of pixels and loops it on the other side, handy for \
+painting away tiling";
 
 class Roll : public Iop
 {
@@ -29,6 +31,7 @@ class Roll : public Iop
 	
 	
 public:
+	
 	Roll(Node* node) : Iop(node) { 
 		x = y = x0 = y0 = 0;
 	}
@@ -39,7 +42,7 @@ public:
 	const char* node_help() const { return HELP; }
 	static const Iop::Description d;
 	Matrix4* matrix() { return &matrix_; }
-//	int slowness() const { return 1; } // this is a really fast operator...
+	int slowness() const { return 1; } // this is a somewhat fast operator...
 };
 
 void Roll::_validate(bool)
@@ -54,17 +57,9 @@ void Roll::_validate(bool)
 	// create the transformation matrix for the GUI:
 	matrix_.translation(x, y);
 	// enforce the same bbox
-}
-
-void Roll::_request(int x, int y, int r, int t, ChannelMask channels, int count)
-{
-	// adjust the input viewport:
-	x -= dx;
-	r -= dx;
-	y -= dy;
-	t -= dy;
-	// get that rectangle:
-	input0().request(channels, count);
+	
+	Box b(input0().info().x(), input0().info().y(), input0().info().r(), input0().info().t());
+	info_.intersect(b);
 }
 
 signed int Roll::offsetCoord(signed int coord, int total)
@@ -77,6 +72,12 @@ signed int Roll::offsetCoord(signed int coord, int total)
 		coord = coord % total;
 	}
 	return coord;
+}
+
+void Roll::_request(int x, int y, int r, int t, ChannelMask channels, int count)
+{
+	// get the whole thing
+	input0().request(channels, count);
 }
 
 void Roll::engine ( int y, int x, int r, ChannelMask channels, Row& out )
