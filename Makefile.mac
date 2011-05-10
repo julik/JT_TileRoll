@@ -1,16 +1,16 @@
-NDKDIR=/Applications/Nuke6.0v7-32/Nuke6.0v7.app/Contents/MacOS
+NDKDIR=/Applications/Nuke6.2v4/Nuke6.2v4.app/Contents/MacOS
 
-TARGET=Roll.dylib
+TARGET=JT_TileRoll.dylib
 HEADERS=$(wildcard *.h)
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
 
-SDKROOT=/Developer/SDKs/MacOSX10.4u.sdk
+SDKROOT=/Developer/SDKs/MacOSX10.5.sdk
 LIBS ?= -lDDImage -lGLEW
 
-CXXFLAGS+= -c -fPIC -DUSE_GLEW -I$(NDKDIR)/include  -msse -O3 -isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch i386
-LNFLAGS+=-bundle -undefined warning -flat_namespace -shared -rdynamic -nodefaultlibs -m32 -ggdb -lDDImage -lGLEW
-LNFLAGS+=-L$(NDKDIR) -Wl,-syslibroot,/Developer/SDKs/MacOSX10.4u.sdk -arch i386
+CXXFLAGS+= -c -fPIC -DUSE_GLEW -I$(NDKDIR)/include  -msse -O3 -isysroot /Developer/SDKs/MacOSX10.5.sdk -arch x86_64
+LNFLAGS+=-bundle -undefined warning -flat_namespace -shared -rdynamic -nodefaultlibs-ggdb -lDDImage -lGLEW
+LNFLAGS+=-L$(NDKDIR) -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -arch x86_64
 
 all: $(TARGET)
 

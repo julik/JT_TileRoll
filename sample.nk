@@ -2,35 +2,35 @@
 version 6.0 v3
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="22" w="1251" h="1024" screen="0">
+    <window x="0" y="22" w="1188" h="751" screen="0">
         <splitter orientation="1">
-            <split size="790"></split>
+            <split size="750"></split>
             <splitter orientation="1">
                 <split size="40"></split>
                 <dock id="" hideTitles="1" activePageId="Toolbar.1">
                     <page id="Toolbar.1"></page>
                 </dock>
-                <split size="746"></split>
+                <split size="706"></split>
                 <splitter orientation="2">
-                    <split size="556"></split>
+                    <split size="552"></split>
                     <dock id="" activePageId="Viewer.1">
                         <page id="Viewer.1"></page>
                     </dock>
-                    <split size="442"></split>
+                    <split size="173"></split>
                     <dock id="" activePageId="DAG.1">
                         <page id="DAG.1"></page>
                         <page id="Curve Editor.1"></page>
                     </dock>
                 </splitter>
             </splitter>
-            <split size="457"></split>
+            <split size="434"></split>
             <splitter orientation="2">
-                <split size="868"></split>
+                <split size="631"></split>
                 <dock id="" activePageId="Properties.1">
                     <page id="Properties.1"></page>
                     <page id="Script Editor.1"></page>
                 </dock>
-                <split size="130"></split>
+                <split size="94"></split>
                 <dock id="" activePageId="Progress.1">
                     <page id="Progress.1"></page>
                 </dock>
@@ -41,35 +41,42 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 }
 Root {
  inputs 0
- name /Code/TileRoll/sample.nk
- frame 45
+ name /Code/TileJT_TileRoll/sample.nk
  format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
  proxy_type scale
  proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
-}
-CheckerBoard2 {
- inputs 0
- boxsize 63
- name CheckerBoard1
- xpos -93
- ypos -249
 }
 Read {
  inputs 0
  file /Users/julik/Desktop/VFX_Projectery/Poezda/NukeOutsIns/s05_Nuke_CMPD.tif
  format "2048 1234 0 0 2048 1234 1 "
  name Read1
- xpos -214
- ypos -193
+ xpos -31
+ ypos -285
 }
-Roll {
- roll {1612 92}
- name Roll1
+JT_TileRoll {
+ roll {1746 102}
+ name JT_TileRoll1
  selected true
- xpos -66
- ypos -98
+ xpos 95
+ ypos -255
 }
+set N17ba7470 [stack 0]
+JT_TileRoll {
+ roll {1242 206}
+ name JT_TileRoll2
+ xpos 120
+ ypos -211
+}
+JT_TileRoll {
+ roll {1242 206}
+ name JT_TileRoll3
+ xpos 185
+ ypos -165
+}
+push $N17ba7470
 Viewer {
+ frame 1
  input_process false
  name Viewer1
  xpos -40
