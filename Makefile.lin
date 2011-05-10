@@ -1,0 +1,19 @@
+# Compiler Info ('g++-4.1 --version')
+# g++-4.1 (GCC) 4.1.2
+# Copyright (C) 2006 Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.  There is NO
+# warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# End Compiler Info Output
+NDKDIR ?= /usr/local/thefoundry/Nuke6.2v1
+MYCXX ?= g++#-4.1
+LINK ?= g++#-4.1
+CXXFLAGS ?= -g -c -DUSE_GLEW -I$(NDKDIR)/include -fPIC -msse 
+LINKFLAGS ?= -L$(NDKDIR) 
+LIBS ?= -lDDImage
+LINKFLAGS += -shared
+all: JT_TileRoll.so
+.PRECIOUS : %.os
+%.os: %.cpp
+	$(MYCXX) $(CXXFLAGS) -o $(@) $<
+%.so: %.os
+	$(LINK) $(LINKFLAGS) $(LIBS) -o $(@) $<
