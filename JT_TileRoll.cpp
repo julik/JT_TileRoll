@@ -104,8 +104,7 @@ void JT_TileRoll::knobs(Knob_Callback f)
 {
 	XY_knob(f, &x, "roll");
 	XY_knob(f, &x0, 0, INVISIBLE);
-	Tooltip(f, "roll\n"
-						 "This is rounded to the nearest number of pixels so no filtering is done.");
+	Tooltip(f, "The number of pixels by which the canvas has to be offset. This is rounded to the nearest number of pixels, no filtering is done.");
 }
 
 static Iop* build(Node* node) { return new JT_TileRoll(node); }
