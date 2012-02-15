@@ -35,6 +35,7 @@ public:
 		x = y = x0 = y0 = 0;
 	}
 	
+	void append(Hash& hash); // Hashing overloaded
 	signed int offsetCoord(signed int coord, int total);
 	virtual void knobs(Knob_Callback);
 	const char* Class() const { return CLASS; }
@@ -43,6 +44,14 @@ public:
 	Matrix4* matrix() { return &matrix_; }
 	int slowness() const { return 1; } // this is a somewhat fast operator...
 };
+
+// Hashing for caches. We append our version to the cache hash, so that when you update
+// the plugin all the caches will(should?) be flushed automatically
+void JT_TileRoll::append(Hash& hash) {
+	hash.append(__DATE__);
+	hash.append(__TIME__);
+	Iop::append(hash); // the super called he wants his pointers back
+}
 
 void JT_TileRoll::_validate(bool)
 {
