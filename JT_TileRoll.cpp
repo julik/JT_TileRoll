@@ -3,7 +3,6 @@
 #include "DDImage/Iop.h"
 #include "DDImage/Row.h"
 #include "DDImage/Pixel.h"
-#include "DDImage/Filter.h"
 #include "DDImage/Knobs.h"
 #include "DDImage/Knob.h"
 #include "DDImage/Vector2.h"
